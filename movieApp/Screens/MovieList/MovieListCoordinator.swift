@@ -8,7 +8,7 @@
 import UIKit
 
 final class MovieListCoordinator: Coordinator {
-    var navigationController: UINavigationController?
+    var navigationController: UINavigationController
 
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
@@ -20,12 +20,13 @@ final class MovieListCoordinator: Coordinator {
             viewModel: vm,
             navigationDelegate: self
         )
-        navigationController?.pushViewController(vc, animated: false)
+        navigationController.pushViewController(vc, animated: false)
     }
 }
 
 extension MovieListCoordinator: MovieListCoordinatorNavigationDelegate {
     func didSelectMovie(_ movie: Movie) {
+        print(" Movie selected:", movie.title)
         let detailsCoordinator = MovieDetailsCoordinator(
             navigationController: navigationController,
             movie: movie
