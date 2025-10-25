@@ -66,6 +66,22 @@ final class MovieListViewController: UIViewController {
         viewModel.movies
             .drive(tableView.rx.items(cellIdentifier: "Cell")) { _, movie, cell in
                 cell.textLabel?.text = movie.title
+
+                // Load poster image
+                if let poster = movie.poster, let url = URL(string: poster) {
+                    DispatchQueue.global().async {
+                        if let data = try? Data(contentsOf: url),
+                           let image = UIImage(data: data) {
+                            DispatchQueue.main.async {
+                                cell.imageView?.image = image
+                                cell.setNeedsLayout()
+                            }
+                        }
+                    }
+                } else {
+                    cell.imageView?.image = UIImage(systemName: "film")
+                }
+
                 cell.accessoryType = .disclosureIndicator
             }
             .disposed(by: disposeBag)

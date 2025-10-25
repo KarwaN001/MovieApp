@@ -8,13 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		5FE1232C2EAD505300178935 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 5FE1232B2EAD505300178935 /* RxCocoa */; };
-		5FE1232E2EAD505300178935 /* RxCocoa-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 5FE1232D2EAD505300178935 /* RxCocoa-Dynamic */; };
 		5FE123302EAD505300178935 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 5FE1232F2EAD505300178935 /* RxRelay */; };
-		5FE123322EAD505300178935 /* RxRelay-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 5FE123312EAD505300178935 /* RxRelay-Dynamic */; };
 		5FE123342EAD505300178935 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5FE123332EAD505300178935 /* RxSwift */; };
-		5FE123362EAD505300178935 /* RxSwift-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 5FE123352EAD505300178935 /* RxSwift-Dynamic */; };
-		5FE123382EAD505300178935 /* RxTest in Frameworks */ = {isa = PBXBuildFile; productRef = 5FE123372EAD505300178935 /* RxTest */; };
-		5FE1233A2EAD505300178935 /* RxTest-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 5FE123392EAD505300178935 /* RxTest-Dynamic */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,13 +71,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5FE123382EAD505300178935 /* RxTest in Frameworks */,
-				5FE123322EAD505300178935 /* RxRelay-Dynamic in Frameworks */,
-				5FE1233A2EAD505300178935 /* RxTest-Dynamic in Frameworks */,
 				5FE123302EAD505300178935 /* RxRelay in Frameworks */,
 				5FE123342EAD505300178935 /* RxSwift in Frameworks */,
-				5FE1232E2EAD505300178935 /* RxCocoa-Dynamic in Frameworks */,
-				5FE123362EAD505300178935 /* RxSwift-Dynamic in Frameworks */,
 				5FE1232C2EAD505300178935 /* RxCocoa in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -145,13 +135,8 @@
 			name = movieApp;
 			packageProductDependencies = (
 				5FE1232B2EAD505300178935 /* RxCocoa */,
-				5FE1232D2EAD505300178935 /* RxCocoa-Dynamic */,
 				5FE1232F2EAD505300178935 /* RxRelay */,
-				5FE123312EAD505300178935 /* RxRelay-Dynamic */,
 				5FE123332EAD505300178935 /* RxSwift */,
-				5FE123352EAD505300178935 /* RxSwift-Dynamic */,
-				5FE123372EAD505300178935 /* RxTest */,
-				5FE123392EAD505300178935 /* RxTest-Dynamic */,
 			);
 			productName = movieApp;
 			productReference = 5FAD7C6D2EAC0E67009EC449 /* movieApp.app */;
@@ -633,40 +618,15 @@
 			package = 5FE1232A2EAD505300178935 /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxCocoa;
 		};
-		5FE1232D2EAD505300178935 /* RxCocoa-Dynamic */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 5FE1232A2EAD505300178935 /* XCRemoteSwiftPackageReference "RxSwift" */;
-			productName = "RxCocoa-Dynamic";
-		};
 		5FE1232F2EAD505300178935 /* RxRelay */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 5FE1232A2EAD505300178935 /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxRelay;
 		};
-		5FE123312EAD505300178935 /* RxRelay-Dynamic */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 5FE1232A2EAD505300178935 /* XCRemoteSwiftPackageReference "RxSwift" */;
-			productName = "RxRelay-Dynamic";
-		};
 		5FE123332EAD505300178935 /* RxSwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 5FE1232A2EAD505300178935 /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxSwift;
-		};
-		5FE123352EAD505300178935 /* RxSwift-Dynamic */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 5FE1232A2EAD505300178935 /* XCRemoteSwiftPackageReference "RxSwift" */;
-			productName = "RxSwift-Dynamic";
-		};
-		5FE123372EAD505300178935 /* RxTest */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 5FE1232A2EAD505300178935 /* XCRemoteSwiftPackageReference "RxSwift" */;
-			productName = RxTest;
-		};
-		5FE123392EAD505300178935 /* RxTest-Dynamic */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 5FE1232A2EAD505300178935 /* XCRemoteSwiftPackageReference "RxSwift" */;
-			productName = "RxTest-Dynamic";
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
