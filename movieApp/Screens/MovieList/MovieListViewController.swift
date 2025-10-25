@@ -91,10 +91,15 @@ final class MovieListViewController: UIViewController {
             .drive(activityIndicator.rx.isAnimating)
             .disposed(by: disposeBag)
 
-        // tap row -
+        // tap row - handle selection
         tableView.rx.modelSelected(Movie.self)
             .subscribe(onNext: { [weak self] movie in
+                print("🎬 Movie tapped in ViewController:", movie.title)
                 self?.navigationDelegate?.didSelectMovie(movie)
+                // Deselect the row for better UX
+                if let selectedIndexPath = self?.tableView.indexPathForSelectedRow {
+                    self?.tableView.deselectRow(at: selectedIndexPath, animated: true)
+                }
             })
             .disposed(by: disposeBag)
 
