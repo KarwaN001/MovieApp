@@ -52,7 +52,7 @@ final class FavoritesViewController: UIViewController {
         viewModel.favoriteMovies
             .asDriver()
             .drive(tableView.rx.items(cellIdentifier: "Cell")) { _, movie, cell in
-                cell.textLabel?.text = movie.title
+                cell.textLabel?.text = movie.Title
                 cell.accessoryType = .disclosureIndicator
             }
             .disposed(by: disposeBag)
@@ -60,7 +60,7 @@ final class FavoritesViewController: UIViewController {
         // Handle row selection
         tableView.rx.modelSelected(Movie.self)
             .subscribe(onNext: { [weak self] movie in
-                print("❤️ Favorite movie tapped:", movie.title)
+                print("❤️ Favorite movie tapped:", movie.Title)
                 self?.navigationDelegate?.didSelectFavoriteMovie(movie)
                 // Deselect the row for better UX
                 if let selectedIndexPath = self?.tableView.indexPathForSelectedRow {

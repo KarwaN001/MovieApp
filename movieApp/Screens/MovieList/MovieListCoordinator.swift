@@ -26,7 +26,7 @@ final class MovieListCoordinator: Coordinator {
 
 extension MovieListCoordinator: MovieListCoordinatorNavigationDelegate {
     func didSelectMovie(_ movie: Movie) {
-        print(" Movie selected:", movie.title)
+        print(" Movie selected:", movie.Title)
         let detailsCoordinator = MovieDetailsCoordinator(
             navigationController: navigationController,
             movie: movie

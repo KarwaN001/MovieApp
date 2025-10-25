@@ -65,10 +65,10 @@ final class MovieListViewController: UIViewController {
         // movies -> tableView
         viewModel.movies
             .drive(tableView.rx.items(cellIdentifier: "Cell")) { _, movie, cell in
-                cell.textLabel?.text = movie.title
+                cell.textLabel?.text = movie.Title
 
                 // Load poster image
-                if let poster = movie.poster, let url = URL(string: poster) {
+                if let poster = movie.Poster, let url = URL(string: poster) {
                     DispatchQueue.global().async {
                         if let data = try? Data(contentsOf: url),
                            let image = UIImage(data: data) {
@@ -94,7 +94,7 @@ final class MovieListViewController: UIViewController {
         // tap row - handle selection
         tableView.rx.modelSelected(Movie.self)
             .subscribe(onNext: { [weak self] movie in
-                print("🎬 Movie tapped in ViewController:", movie.title)
+                print("🎬 Movie tapped in ViewController:", movie.Title)
                 self?.navigationDelegate?.didSelectMovie(movie)
                 // Deselect the row for better UX
                 if let selectedIndexPath = self?.tableView.indexPathForSelectedRow {

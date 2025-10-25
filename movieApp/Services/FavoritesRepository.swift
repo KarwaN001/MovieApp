@@ -23,16 +23,16 @@ final class FavoritesRepository: FavoritesRepositoryProtocol {
 
     func toggleFavorite(_ movie: Movie) {
         var list = stored
-        if let index = list.firstIndex(of: movie.title) {
+        if let index = list.firstIndex(of: movie.Title) {
             list.remove(at: index)
         } else {
-            list.append(movie.title)
+            list.append(movie.Title)
         }
         stored = list
     }
 
     func isFavorite(_ movie: Movie) -> Bool {
-        stored.contains(movie.title)
+        stored.contains(movie.Title)
     }
 
     func favorites() -> [String] {
