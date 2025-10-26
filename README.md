@@ -55,13 +55,6 @@ movieApp/
 - ✅ **Interface Segregation** - Focused protocol definitions
 - ✅ **Dependency Inversion** - Depends on abstractions, not concretions
 
-## 🧪 Testing
-Includes comprehensive unit tests:
-- ✅ ViewModel tests with mock services
-- ✅ Repository tests with mock storage
-- ✅ API service tests
-- ✅ Dependency injection for testability
-
 ## 🚀 Getting Started
 ```bash
 # Clone the repository
@@ -77,17 +70,6 @@ open movieApp.xcodeproj
 # Build and run
 ⌘ + R
 ```
-
-## 📦 Dependencies
-- [RxSwift](https://github.com/ReactiveX/RxSwift) - Reactive programming
-- [RxCocoa](https://github.com/ReactiveX/RxSwift) - RxSwift UIKit bindings
-
-## 🎨 Design Highlights
-- 🎨 Modern UI with rounded corners and shadows
-- 📱 Responsive collection view layouts
-- 🌈 Dynamic theming support
-- ♿ Accessibility-friendly design
-- 🎭 Smooth animations and transitions
 
 ## 📝 Key Learnings
 This project demonstrates:
