@@ -27,6 +27,8 @@ final class MovieListViewController: UIViewController {
         label.textColor = .label
         return label
     }()
+    
+    private let themeToggleButton = ThemeToggleButton()
 
     private let viewModel: MovieListViewModel
     private let disposeBag = DisposeBag()
@@ -69,17 +71,24 @@ final class MovieListViewController: UIViewController {
         collectionView.register(MovieCardCell.self, forCellWithReuseIdentifier: "MovieCardCell")
 
         view.addSubview(titleLabel)
+        view.addSubview(themeToggleButton)
         view.addSubview(collectionView)
         view.addSubview(activityIndicator)
 
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        themeToggleButton.translatesAutoresizingMaskIntoConstraints = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 1),
             titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            titleLabel.trailingAnchor.constraint(equalTo: themeToggleButton.leadingAnchor, constant: -12),
+            
+            themeToggleButton.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor),
+            themeToggleButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            themeToggleButton.widthAnchor.constraint(equalToConstant: 40),
+            themeToggleButton.heightAnchor.constraint(equalToConstant: 40),
             
             collectionView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 1),
             collectionView.leftAnchor.constraint(equalTo: view.leftAnchor),
