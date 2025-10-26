@@ -14,8 +14,6 @@ final class ThemeToggleButton: UIButton {
     private let themeManager: ThemeManagerProtocol
     private let disposeBag = DisposeBag()
     
-    // MARK: - Initialization
-    
     init(themeManager: ThemeManagerProtocol = ThemeManager.shared) {
         self.themeManager = themeManager
         super.init(frame: .zero)
@@ -32,11 +30,8 @@ final class ThemeToggleButton: UIButton {
     private func setupUI() {
         backgroundColor = .systemGray6
         layer.cornerRadius = 20
-        layer.borderWidth = 1
         layer.borderColor = UIColor.separator.cgColor
-        contentEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         
-        // Set initial icon
         updateIcon(for: themeManager.currentTheme.value)
     }
     
