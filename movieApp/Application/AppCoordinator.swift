@@ -12,7 +12,6 @@ final class AppCoordinator: Coordinator {
     var navigationController: UINavigationController
     private var tabBarController: UITabBarController?
     
-    // Keep strong references to child coordinators so they don't get deallocated
     private var movieListCoordinator: MovieListCoordinator?
     private var favoritesCoordinator: FavoritesCoordinator?
 

@@ -25,8 +25,6 @@ final class ThemeToggleButton: UIButton {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Setup
-    
     private func setupUI() {
         backgroundColor = .systemGray6
         layer.cornerRadius = 20

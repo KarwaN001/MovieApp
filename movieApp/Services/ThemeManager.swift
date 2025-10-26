@@ -36,7 +36,6 @@ final class ThemeManager: ThemeManagerProtocol {
     let currentTheme: BehaviorRelay<AppTheme>
     
     private init() {
-        // Load saved theme or default to light
         let savedTheme: AppTheme
         if let data = UserDefaults.standard.data(forKey: themeKey),
            let theme = try? JSONDecoder().decode(AppTheme.self, from: data) {
@@ -47,7 +46,6 @@ final class ThemeManager: ThemeManagerProtocol {
         
         currentTheme = BehaviorRelay(value: savedTheme)
         
-        // Apply the saved theme
         applyTheme(savedTheme)
     }
     
@@ -59,7 +57,6 @@ final class ThemeManager: ThemeManagerProtocol {
     func applyTheme(_ theme: AppTheme) {
         currentTheme.accept(theme)
         
-        // Save theme preference
         if let data = try? JSONEncoder().encode(theme) {
             UserDefaults.standard.setValue(data, forKey: themeKey)
         }
