@@ -10,32 +10,42 @@ import Foundation
 protocol FavoritesRepositoryProtocol {
     func toggleFavorite(_ movie: Movie)
     func isFavorite(_ movie: Movie) -> Bool
-    func favorites() -> [String]
+    func favorites() -> [Movie]
 }
 
 final class FavoritesRepository: FavoritesRepositoryProtocol {
-    private let key = "FAVORITE_MOVIE_TITLES"
+    private let key = "FAVORITE_MOVIES"
 
-    private var stored: [String] {
-        get { UserDefaults.standard.stringArray(forKey: key) ?? [] }
-        set { UserDefaults.standard.setValue(newValue, forKey: key) }
+    private var stored: [Movie] {
+        get {
+            guard let data = UserDefaults.standard.data(forKey: key),
+                  let movies = try? JSONDecoder().decode([Movie].self, from: data) else {
+                return []
+            }
+            return movies
+        }
+        set {
+            if let data = try? JSONEncoder().encode(newValue) {
+                UserDefaults.standard.setValue(data, forKey: key)
+            }
+        }
     }
 
     func toggleFavorite(_ movie: Movie) {
         var list = stored
-        if let index = list.firstIndex(of: movie.Title) {
+        if let index = list.firstIndex(where: { $0.Title == movie.Title }) {
             list.remove(at: index)
         } else {
-            list.append(movie.Title)
+            list.append(movie)
         }
         stored = list
     }
 
     func isFavorite(_ movie: Movie) -> Bool {
-        stored.contains(movie.Title)
+        stored.contains(where: { $0.Title == movie.Title })
     }
 
-    func favorites() -> [String] {
+    func favorites() -> [Movie] {
         stored
     }
 }

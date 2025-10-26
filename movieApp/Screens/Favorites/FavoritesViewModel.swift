@@ -19,9 +19,7 @@ final class FavoritesViewModel {
     }
 
     func loadFavorites() {
-        // We only stored movie titles, so we’ll rebuild fake Movie models here for now
-        let titles = favoritesRepo.favorites()
-        let movies = titles.map { Movie(Title: $0, Year: "", Runtime: "", Poster: nil) }
+        let movies = favoritesRepo.favorites()
         favoriteMovies.accept(movies)
     }
 
