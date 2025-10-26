@@ -87,6 +87,11 @@
 			path = movieAppTests;
 			sourceTree = "<group>";
 		};
+		5FB0E5AC2EAEEBF700B9F6DA /* readme-images */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "readme-images";
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -216,6 +221,7 @@
 		5FAD7C642EAC0E67009EC449 = {
 			isa = PBXGroup;
 			children = (
+				5FB0E5AC2EAEEBF700B9F6DA /* readme-images */,
 				5FAD7C6F2EAC0E67009EC449 /* movieApp */,
 				5FAD7C862EAC0E69009EC449 /* movieAppTests */,
 				5F08B50C2EAEBAD000CA17C6 /* Frameworks */,
@@ -251,6 +257,7 @@
 			);
 			fileSystemSynchronizedGroups = (
 				5FAD7C6F2EAC0E67009EC449 /* movieApp */,
+				5FB0E5AC2EAEEBF700B9F6DA /* readme-images */,
 			);
 			name = movieApp;
 			packageProductDependencies = (
