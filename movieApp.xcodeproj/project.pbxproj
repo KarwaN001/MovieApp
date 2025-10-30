@@ -62,7 +62,7 @@
 		5FB0E5952EAED8A500B9F6DA /* Exceptions for "movieApp" folder in "movieAppTests" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Models/Model.swift,
+				Models/Movie.swift,
 				Screens/MovieDetails/MovieDetailsViewModel.swift,
 				Screens/MovieList/MovieListViewModel.swift,
 				Services/FavoritesRepository.swift,
