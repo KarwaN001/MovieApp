@@ -28,14 +28,11 @@ final class ThemeToggleButton: UIButton {
         backgroundColor = .systemGray6
         layer.cornerRadius = 20
         layer.borderColor = UIColor.separator.cgColor
-        
-        updateIcon(for: themeManager.currentTheme.value)
     }
     
     private func setupBindings() {
         // Observe theme changes and update icon
         themeManager.currentTheme
-            .asDriver()
             .drive(onNext: { [weak self] theme in
                 self?.updateIcon(for: theme)
             })

@@ -24,7 +24,7 @@ enum AppTheme: String, Codable {
 }
 
 protocol ThemeManagerProtocol {
-    var currentTheme: BehaviorRelay<AppTheme> { get }
+    var currentTheme: Driver<AppTheme> { get }
     func toggleTheme()
     func applyTheme(_ theme: AppTheme)
 }
@@ -32,39 +32,64 @@ protocol ThemeManagerProtocol {
 final class ThemeManager: ThemeManagerProtocol {
     static let shared = ThemeManager()
     
-    private let themeKey = "APP_THEME"
-    let currentTheme: BehaviorRelay<AppTheme>
+    // MARK: - Properties
+    var currentTheme: Driver<AppTheme> {
+        currentThemeRelay.asDriver()
+    }
     
-    private init() {
+    private let currentThemeRelay: BehaviorRelay<AppTheme>
+    private let themeKey: String
+    private let userDefaults: UserDefaults
+    
+    // MARK: - Init
+    init(
+        themeKey: String = "APP_THEME",
+        userDefaults: UserDefaults = .standard
+    ) {
+        self.themeKey = themeKey
+        self.userDefaults = userDefaults
+        
+        // Load saved theme
         let savedTheme: AppTheme
-        if let data = UserDefaults.standard.data(forKey: themeKey),
+        if let data = userDefaults.data(forKey: themeKey),
            let theme = try? JSONDecoder().decode(AppTheme.self, from: data) {
             savedTheme = theme
         } else {
             savedTheme = .light
         }
         
-        currentTheme = BehaviorRelay(value: savedTheme)
+        self.currentThemeRelay = BehaviorRelay(value: savedTheme)
         
-        applyTheme(savedTheme)
+        // Apply initial theme
+        applyThemeToUI(savedTheme)
     }
     
+    // MARK: - Public Methods
     func toggleTheme() {
-        let newTheme: AppTheme = currentTheme.value == .light ? .dark : .light
+        let currentValue = currentThemeRelay.value
+        let newTheme: AppTheme = currentValue == .light ? .dark : .light
         applyTheme(newTheme)
     }
     
     func applyTheme(_ theme: AppTheme) {
-        currentTheme.accept(theme)
+        currentThemeRelay.accept(theme)
         
+        // Save to UserDefaults
         if let data = try? JSONEncoder().encode(theme) {
-            UserDefaults.standard.setValue(data, forKey: themeKey)
+            userDefaults.setValue(data, forKey: themeKey)
         }
         
-        // Apply to all windows
-        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
-            windowScene.windows.forEach { window in
-                window.overrideUserInterfaceStyle = theme.userInterfaceStyle
+        // Apply to UI
+        applyThemeToUI(theme)
+    }
+    
+    // MARK: - Private Methods
+    private func applyThemeToUI(_ theme: AppTheme) {
+        DispatchQueue.main.async {
+            if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+                windowScene.windows.forEach { window in
+                    window.overrideUserInterfaceStyle = theme.userInterfaceStyle
+                }
             }
         }
     }
