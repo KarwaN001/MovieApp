@@ -39,17 +39,18 @@ final class FavoritesViewModel: FavoritesViewModelType {
     // MARK: - Init
     init(favoritesRepo: FavoritesRepositoryProtocol = FavoritesRepository()) {
         self.favoritesRepo = favoritesRepo
-
-        // Initialize input and output
-        self.input = Input(
-            loadFavoritesAction: { [weak self] in
-                self?.loadFavorites()
-            }
-        )
-
+        
+        // Create input instance without viewModel reference
+        let inputInstance = Input()
+        self.input = inputInstance
+        
+        // Initialize output
         self.output = Output(
             favoriteMovies: favoriteMoviesRelay.asDriver()
         )
+        
+        // Now set the viewModel reference after self is fully initialized
+        inputInstance.viewModel = self
 
         // Load favorites on init
         loadFavorites()
@@ -65,11 +66,11 @@ final class FavoritesViewModel: FavoritesViewModelType {
 
 // MARK: - Input Implementation
 private extension FavoritesViewModel {
-    struct Input: FavoritesViewModelInput {
-        let loadFavoritesAction: () -> Void
+    final class Input: FavoritesViewModelInput {
+        weak var viewModel: FavoritesViewModel?
 
         func viewWillAppear() {
-            loadFavoritesAction()
+            viewModel?.loadFavorites()
         }
     }
 }

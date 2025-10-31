@@ -46,18 +46,17 @@ final class MovieListViewModel: MovieListViewModelType {
     init(apiService: MovieAPIServiceProtocol = MovieAPIService()) {
         self.apiService = apiService
 
-        // Initialize input and output
-        self.input = Input(
-            fetchMoviesAction: { [weak self] in
-                self?.fetchMovies()
-            }
-        )
-
+        // Create input instance without viewModel reference
+        let inputInstance = Input()
+        self.input = inputInstance
+        // Initialize output
         self.output = Output(
             movies: moviesRelay.asDriver(),
             isLoading: loadingRelay.asDriver(),
             errorMessage: errorRelay.asDriver()
         )
+        // Now set the viewModel reference after self is fully initialized
+        inputInstance.viewModel = self
     }
 
     // MARK: - Private Methods
@@ -85,11 +84,11 @@ final class MovieListViewModel: MovieListViewModelType {
 
 // MARK: - Input Implementation
 private extension MovieListViewModel {
-    struct Input: MovieListViewModelInput {
-        let fetchMoviesAction: () -> Void
+    final class Input: MovieListViewModelInput {
+        weak var viewModel: MovieListViewModel?
 
         func viewDidLoad() {
-            fetchMoviesAction()
+            viewModel?.fetchMovies()
         }
     }
 }

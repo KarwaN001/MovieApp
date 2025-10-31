@@ -49,16 +49,11 @@ final class MovieDetailsViewModel: MovieDetailsViewModelType {
         self.favoritesRepo = favoritesRepo
         self.isFavoriteRelay = BehaviorRelay(value: favoritesRepo.isFavorite(movie))
 
-        // Initialize input and output
-        self.input = Input(
-            toggleFavoriteAction: { [weak self] in
-                self?.handleToggleFavorite()
-            },
-            trailerURLProvider: { [weak self] in
-                self?.generateTrailerURL()
-            }
-        )
-
+        // Create input instance without viewModel reference
+        let inputInstance = Input()
+        self.input = inputInstance
+        
+        // Initialize output
         self.output = Output(
             title: Driver.just(movie.title),
             year: Driver.just(movie.year),
@@ -66,6 +61,9 @@ final class MovieDetailsViewModel: MovieDetailsViewModelType {
             poster: Driver.just(movie.poster ?? ""),
             isFavorite: isFavoriteRelay.asDriver()
         )
+        
+        // Now set the viewModel reference after self is fully initialized
+        inputInstance.viewModel = self
     }
 
     // MARK: - Private Methods
@@ -82,16 +80,15 @@ final class MovieDetailsViewModel: MovieDetailsViewModelType {
 
 // MARK: - Input Implementation
 private extension MovieDetailsViewModel {
-    struct Input: MovieDetailsViewModelInput {
-        let toggleFavoriteAction: () -> Void
-        let trailerURLProvider: () -> URL?
+    final class Input: MovieDetailsViewModelInput {
+        weak var viewModel: MovieDetailsViewModel?
 
         func toggleFavorite() {
-            toggleFavoriteAction()
+            viewModel?.handleToggleFavorite()
         }
 
         func trailerButtonTapped() -> URL? {
-            trailerURLProvider()
+            viewModel?.generateTrailerURL()
         }
     }
 }
