@@ -28,7 +28,7 @@ final class MovieListViewModelTests: XCTestCase {
         viewModel.movies
             .drive(onNext: { movies in
                 if !movies.isEmpty {
-                    XCTAssertEqual(movies.first?.Title, "Mock Movie")
+                    XCTAssertEqual(movies.first?.title, "Mock Movie")
                     expectation.fulfill()
                 }
             })
@@ -42,7 +42,7 @@ final class MovieListViewModelTests: XCTestCase {
 // MARK: - Mock Service
 final class MockMovieAPIService: MovieAPIServiceProtocol {
     func fetchMovies() -> Observable<[Movie]> {
-        let movie = Movie(Title: "Mock Movie", Year: "2024", Runtime: "120", Poster: nil)
+        let movie = Movie(title: "Mock Movie", year: "2024", runtime: "120", poster: nil)
         return Observable.just([movie])
     }
 }

@@ -15,7 +15,7 @@ final class MovieDetailsViewModelTests: XCTestCase {
 
     override func setUp() {
         repo = FavoritesRepository()
-        movie = Movie(Title: "Doctor Strange", Year: "2016", Runtime: "115", Poster: nil)
+        movie = Movie(title: "Doctor Strange", year: "2016", runtime: "115", poster: nil)
         UserDefaults.standard.removeObject(forKey: "FAVORITE_MOVIE_TITLES")
     }
 

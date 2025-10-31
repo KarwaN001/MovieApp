@@ -17,10 +17,10 @@ final class FavoritesRepositoryTests: XCTestCase {
         super.setUp()
         repo = FavoritesRepository()
         sampleMovie = Movie(
-            Title: "Test Movie",
-            Year: "2025",
-            Runtime: "120 min",
-            Poster: nil
+            title: "Test Movie",
+            year: "2025",
+            runtime: "120 min",
+            poster: nil
         )
 
         // Clear previous stored favorites
@@ -56,6 +56,6 @@ final class FavoritesRepositoryTests: XCTestCase {
         repo.toggleFavorite(sampleMovie)
         let favorites = repo.favorites()
         XCTAssertEqual(favorites.count, 1, "Should return 1 favorite movie")
-        XCTAssertEqual(favorites.first?.Title, "Test Movie")
+        XCTAssertEqual(favorites.first?.title, "Test Movie")
     }
 }

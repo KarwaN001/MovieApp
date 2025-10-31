@@ -23,7 +23,7 @@ final class FavoritesCoordinator: Coordinator {
 
 extension FavoritesCoordinator: FavoritesCoordinatorNavigationDelegate {
     func didSelectFavoriteMovie(_ movie: Movie) {
-        print("❤️ Favorite movie selected:", movie.Title)
+        print("❤️ Favorite movie selected:", movie.title)
         let detailsCoordinator = MovieDetailsCoordinator(
             navigationController: navigationController,
             movie: movie

@@ -33,7 +33,7 @@ final class FavoritesRepository: FavoritesRepositoryProtocol {
 
     func toggleFavorite(_ movie: Movie) {
         var list = stored
-        if let index = list.firstIndex(where: { $0.Title == movie.Title }) {
+        if let index = list.firstIndex(where: { $0.title == movie.title }) {
             list.remove(at: index)
         } else {
             list.append(movie)
@@ -42,7 +42,7 @@ final class FavoritesRepository: FavoritesRepositoryProtocol {
     }
 
     func isFavorite(_ movie: Movie) -> Bool {
-        stored.contains(where: { $0.Title == movie.Title })
+        stored.contains(where: { $0.title == movie.title })
     }
 
     func favorites() -> [Movie] {

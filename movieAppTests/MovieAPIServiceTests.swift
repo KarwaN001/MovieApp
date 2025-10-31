@@ -29,8 +29,8 @@ final class MovieAPIServiceTests: XCTestCase {
             .subscribe(onNext: { movies in
                 // Then
                 XCTAssertFalse(movies.isEmpty, "Movies array should not be empty")
-                XCTAssertNotNil(movies.first?.Title)
-                XCTAssertNotNil(movies.first?.Year)
+                XCTAssertNotNil(movies.first?.title)
+                XCTAssertNotNil(movies.first?.year)
                 expectation.fulfill()
             }, onError: { error in
                 XCTFail("Expected success, got error: \(error)")

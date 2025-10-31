@@ -8,9 +8,17 @@
 import Foundation
 
 struct Movie: Codable, Equatable {
-    let Title: String
-    let Year: String
-    let Runtime: String?
-    let Poster: String?
+    let title: String
+    let year: String
+    let runtime: String?
+    let poster: String?
+    
+    // Map JSON keys (Title, Year, etc.) to Swift properties (title, year, etc.)
+    enum CodingKeys: String, CodingKey {
+        case title = "Title"
+        case year = "Year"
+        case runtime = "Runtime"
+        case poster = "Poster"
+    }
 }
 

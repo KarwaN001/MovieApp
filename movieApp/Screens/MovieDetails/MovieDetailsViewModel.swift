@@ -27,10 +27,10 @@ final class MovieDetailsViewModel {
         self.movie = movie
         self.favoritesRepo = favoritesRepo
 
-        title = Driver.just(movie.Title)
-        year = Driver.just(movie.Year)
-        runtime = Driver.just(movie.Runtime ?? "")
-        poster = Driver.just(movie.Poster ?? "")
+        title = Driver.just(movie.title)
+        year = Driver.just(movie.year)
+        runtime = Driver.just(movie.runtime ?? "")
+        poster = Driver.just(movie.poster ?? "")
         isFavorite = BehaviorRelay(value: favoritesRepo.isFavorite(movie))
     }
 
@@ -41,7 +41,7 @@ final class MovieDetailsViewModel {
 
     func trailerURL() -> URL? {
         // simple YouTube search query
-        let encoded = movie.Title.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+        let encoded = movie.title.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
         return URL(string: "https://www.youtube.com/results?search_query=\(encoded)+trailer")
     }
 }
