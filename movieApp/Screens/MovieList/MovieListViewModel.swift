@@ -39,12 +39,12 @@ final class MovieListViewModel: MovieListViewModelType {
     private let loadingRelay = BehaviorRelay<Bool>(value: false)
     private let errorRelay = BehaviorRelay<String?>(value: nil)
 
-    private let apiService: MovieAPIServiceProtocol
+    private let repository: MovieRepositoryProtocol
     private let disposeBag = DisposeBag()
 
     // MARK: - Init
-    init(apiService: MovieAPIServiceProtocol = MovieAPIService()) {
-        self.apiService = apiService
+    init(repository: MovieRepositoryProtocol = MovieRepository()) {
+        self.repository = repository
 
         // Create input instance without viewModel reference
         let inputInstance = Input()
@@ -64,7 +64,7 @@ final class MovieListViewModel: MovieListViewModelType {
         loadingRelay.accept(true)
         errorRelay.accept(nil)
 
-        apiService.fetchMovies()
+        repository.fetchMovies()
             .observe(on: MainScheduler.instance)
             .subscribe(
                 onNext: { [weak self] movies in

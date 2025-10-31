@@ -20,8 +20,8 @@ final class MovieListViewModelTests: XCTestCase {
 
     func test_fetchMovies_success() {
         // Given
-        let mockService = MockMovieAPIService()
-        let viewModel = MovieListViewModel(apiService: mockService)
+        let mockRepository = MockMovieRepository()
+        let viewModel = MovieListViewModel(repository: mockRepository)
         let expectation = expectation(description: "Movies loaded")
 
         // When
@@ -39,8 +39,8 @@ final class MovieListViewModelTests: XCTestCase {
     }
 }
 
-// MARK: - Mock Service
-final class MockMovieAPIService: MovieAPIServiceProtocol {
+// MARK: - Mock Repository
+final class MockMovieRepository: MovieRepositoryProtocol {
     func fetchMovies() -> Observable<[Movie]> {
         let movie = Movie(title: "Mock Movie", year: "2024", runtime: "120", poster: nil)
         return Observable.just([movie])

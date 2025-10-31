@@ -13,39 +13,38 @@ protocol FavoritesRepositoryProtocol {
     func favorites() -> [Movie]
 }
 
+/// Repository for managing favorite movies
+/// Coordinates data storage through data source abstraction
 final class FavoritesRepository: FavoritesRepositoryProtocol {
-    private let key = "FAVORITE_MOVIES"
-
-    private var stored: [Movie] {
-        get {
-            guard let data = UserDefaults.standard.data(forKey: key),
-                  let movies = try? JSONDecoder().decode([Movie].self, from: data) else {
-                return []
-            }
-            return movies
-        }
-        set {
-            if let data = try? JSONEncoder().encode(newValue) {
-                UserDefaults.standard.setValue(data, forKey: key)
-            }
-        }
+    
+    private let dataSource: FavoritesDataSourceProtocol
+    
+    /// Initialize with custom data source
+    /// - Parameter dataSource: The data source to use for persistence
+    init(dataSource: FavoritesDataSourceProtocol = UserDefaultsDataSource()) {
+        self.dataSource = dataSource
     }
-
+    
     func toggleFavorite(_ movie: Movie) {
-        var list = stored
+        var list = dataSource.load()
+        
         if let index = list.firstIndex(where: { $0.title == movie.title }) {
             list.remove(at: index)
+            print(" Removed '\(movie.title)' from favorites")
         } else {
             list.append(movie)
+            print(" Added '\(movie.title)' to favorites")
         }
-        stored = list
+        
+        dataSource.save(list)
     }
-
+    
     func isFavorite(_ movie: Movie) -> Bool {
-        stored.contains(where: { $0.title == movie.title })
+        let list = dataSource.load()
+        return list.contains(where: { $0.title == movie.title })
     }
-
+    
     func favorites() -> [Movie] {
-        stored
+        return dataSource.load()
     }
 }

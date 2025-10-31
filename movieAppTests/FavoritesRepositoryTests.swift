@@ -15,7 +15,9 @@ final class FavoritesRepositoryTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        repo = FavoritesRepository()
+        // Use a separate key for testing to avoid interfering with real app data
+        let testDataSource = UserDefaultsDataSource(key: "TEST_FAVORITE_MOVIES", userDefaults: .standard)
+        repo = FavoritesRepository(dataSource: testDataSource)
         sampleMovie = Movie(
             title: "Test Movie",
             year: "2025",
@@ -24,7 +26,7 @@ final class FavoritesRepositoryTests: XCTestCase {
         )
 
         // Clear previous stored favorites
-        UserDefaults.standard.removeObject(forKey: "FAVORITE_MOVIES")
+        UserDefaults.standard.removeObject(forKey: "TEST_FAVORITE_MOVIES")
     }
 
     override func tearDown() {
