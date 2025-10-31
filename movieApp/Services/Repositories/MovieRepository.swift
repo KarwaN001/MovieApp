@@ -13,18 +13,15 @@ protocol MovieRepositoryProtocol {
 }
 
 final class MovieRepository: MovieRepositoryProtocol {
-    
     private let apiClient: MovieAPIClientProtocol
     init(apiClient: MovieAPIClientProtocol = MovieAPIClient()) {
         self.apiClient = apiClient
     }
     
     func fetchMovies() -> Observable<[Movie]> {
-
         return apiClient.fetchMovies()
             .do(onNext: { movies in
                 print(" Repository: Provided \(movies.count) movies to ViewModel")
             })
     }
 }
-

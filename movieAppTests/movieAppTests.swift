@@ -9,7 +9,7 @@ import XCTest
 @testable import movieApp
 
 final class MovieAppTests: XCTestCase {
-    //test ttest test test
+    // test ttest test test
     func testExample() {
         let test1 = 10
         let test2 = 20

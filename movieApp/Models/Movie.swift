@@ -21,4 +21,3 @@ struct Movie: Codable, Equatable {
         case poster = "Poster"
     }
 }
-

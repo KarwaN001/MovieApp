@@ -10,7 +10,6 @@ import RxSwift
 import RxCocoa
 
 final class MovieListView: UIView {
-    
     // MARK: - UI Components
     private var collectionView: UICollectionView!
     
@@ -115,7 +114,6 @@ final class MovieListView: UIView {
 
 // MARK: - MovieCardCell
 final class MovieCardCell: UICollectionViewCell {
-    
     private let posterImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
@@ -235,4 +233,3 @@ final class MovieCardCell: UICollectionViewCell {
         yearLabel.text = nil
     }
 }
-

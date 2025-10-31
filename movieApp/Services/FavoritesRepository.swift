@@ -16,7 +16,6 @@ protocol FavoritesRepositoryProtocol {
 /// Repository for managing favorite movies
 /// Coordinates data storage through data source abstraction
 final class FavoritesRepository: FavoritesRepositoryProtocol {
-    
     private let dataSource: FavoritesDataSourceProtocol
     
     /// Initialize with custom data source

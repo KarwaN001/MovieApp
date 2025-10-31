@@ -9,7 +9,6 @@ import XCTest
 @testable import movieApp
 
 final class FavoritesRepositoryTests: XCTestCase {
-
     var repo: FavoritesRepository!
     var mockDataSource: MockFavoritesDataSource!
     var sampleMovie: Movie!

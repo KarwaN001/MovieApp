@@ -10,7 +10,6 @@ import RxSwift
 import RxCocoa
 
 final class FavoritesView: UIView {
-    
     // MARK: - UI Components
     private var collectionView: UICollectionView!
     
@@ -163,7 +162,6 @@ final class FavoritesView: UIView {
 
 // MARK: - FavoriteMovieCardCell
 final class FavoriteMovieCardCell: UICollectionViewCell {
-    
     private let posterImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
@@ -303,4 +301,3 @@ final class FavoriteMovieCardCell: UICollectionViewCell {
         yearLabel.text = nil
     }
 }
-

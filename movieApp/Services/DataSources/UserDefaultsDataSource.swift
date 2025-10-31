@@ -13,10 +13,7 @@ protocol FavoritesDataSourceProtocol {
     func clear()
 }
 
-
-
 final class UserDefaultsDataSource: FavoritesDataSourceProtocol {
-    
     private let key: String
     private let userDefaults: UserDefaults
     
@@ -56,4 +53,3 @@ final class UserDefaultsDataSource: FavoritesDataSourceProtocol {
         print("🗑️ Cleared all favorite movies from UserDefaults")
     }
 }
-

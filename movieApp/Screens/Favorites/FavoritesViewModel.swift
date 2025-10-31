@@ -27,7 +27,6 @@ protocol FavoritesViewModelType {
 
 // MARK: - ViewModel Implementation
 final class FavoritesViewModel: FavoritesViewModelType {
-
     // MARK: - Public Interface
     let input: FavoritesViewModelInput
     let output: FavoritesViewModelOutput

@@ -8,7 +8,6 @@
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-
     var window: UIWindow?
     var appCoordinator: AppCoordinator?
 
@@ -17,7 +16,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         willConnectTo session: UISceneSession,
         options connectionOptions: UIScene.ConnectionOptions
     ) {
-
         guard let windowScene = (scene as? UIWindowScene) else { return }
 
         let navController = UINavigationController()
@@ -31,5 +29,3 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window = window
     }
 }
-
-

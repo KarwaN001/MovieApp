@@ -11,7 +11,6 @@ import RxBlocking
 @testable import movieApp
 
 final class MovieRepositoryTests: XCTestCase {
-    
     var repository: MovieRepository!
     var mockAPIClient: MockMovieAPIClient!
     var disposeBag: DisposeBag!
@@ -110,4 +109,3 @@ final class MovieRepositoryTests: XCTestCase {
         XCTAssertEqual(mockAPIClient.fetchMoviesCallCount, 2)
     }
 }
-

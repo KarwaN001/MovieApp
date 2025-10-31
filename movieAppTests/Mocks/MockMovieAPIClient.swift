@@ -12,7 +12,6 @@ import RxSwift
 /// Mock implementation of MovieAPIClient for testing
 /// Allows complete control over API responses without making real network calls
 final class MockMovieAPIClient: MovieAPIClientProtocol {
-    
     // MARK: - Properties
     var moviesToReturn: [Movie] = []
     var errorToThrow: Error?
@@ -36,4 +35,3 @@ final class MockMovieAPIClient: MovieAPIClientProtocol {
         fetchMoviesCallCount = 0
     }
 }
-

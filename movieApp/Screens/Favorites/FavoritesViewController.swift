@@ -14,7 +14,6 @@ protocol FavoritesCoordinatorNavigationDelegate: AnyObject {
 }
 
 final class FavoritesViewController: UIViewController {
-    
     private let favoritesView = FavoritesView()
     private let viewModel: FavoritesViewModel
     private let disposeBag = DisposeBag()

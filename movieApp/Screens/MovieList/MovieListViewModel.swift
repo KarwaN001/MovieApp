@@ -29,7 +29,6 @@ protocol MovieListViewModelType {
 
 // MARK: - ViewModel Implementation
 final class MovieListViewModel: MovieListViewModelType {
-
     // MARK: - Public Interface
     let input: MovieListViewModelInput
     let output: MovieListViewModelOutput

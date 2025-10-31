@@ -11,7 +11,6 @@ import Foundation
 /// Mock implementation of FavoritesDataSource for testing
 /// Uses in-memory storage instead of UserDefaults for fast, isolated tests
 final class MockFavoritesDataSource: FavoritesDataSourceProtocol {
-    
     // MARK: - Properties
     private var storage: [Movie] = []
     var saveCallCount = 0
@@ -42,4 +41,3 @@ final class MockFavoritesDataSource: FavoritesDataSourceProtocol {
         clearCallCount = 0
     }
 }
-

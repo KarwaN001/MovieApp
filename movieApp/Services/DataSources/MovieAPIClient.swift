@@ -8,13 +8,11 @@
 import Foundation
 import RxSwift
 
-
 protocol MovieAPIClientProtocol {
     func fetchMovies() -> Observable<[Movie]>
 }
 
 final class MovieAPIClient: MovieAPIClientProtocol {
-    
     private let baseURL: String
     private let session: URLSession
     
@@ -82,4 +80,3 @@ final class MovieAPIClient: MovieAPIClientProtocol {
         }
     }
 }
-

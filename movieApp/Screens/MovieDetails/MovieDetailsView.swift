@@ -10,7 +10,6 @@ import RxSwift
 import RxCocoa
 
 final class MovieDetailsView: UIView {
-    
     // MARK: - UI Components
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()

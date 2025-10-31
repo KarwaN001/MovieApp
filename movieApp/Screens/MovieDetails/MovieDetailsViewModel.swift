@@ -32,7 +32,6 @@ protocol MovieDetailsViewModelType {
 
 // MARK: - ViewModel Implementation
 final class MovieDetailsViewModel: MovieDetailsViewModelType {
-
     // MARK: - Public Interface
     let input: MovieDetailsViewModelInput
     let output: MovieDetailsViewModelOutput

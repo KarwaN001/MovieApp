@@ -14,7 +14,6 @@ protocol MovieListCoordinatorNavigationDelegate: AnyObject {
 }
 
 final class MovieListViewController: UIViewController {
-
     private let movieListView = MovieListView()
     private weak var navigationDelegate: MovieListCoordinatorNavigationDelegate?
     private let viewModel: MovieListViewModel

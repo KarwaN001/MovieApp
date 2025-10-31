@@ -8,7 +8,6 @@
 import UIKit
 
 final class AppCoordinator: Coordinator {
-    
     var navigationController: UINavigationController
     private var tabBarController: UITabBarController?
     
@@ -47,4 +46,3 @@ final class AppCoordinator: Coordinator {
             self.tabBarController = tabBarController
         }
 }
-

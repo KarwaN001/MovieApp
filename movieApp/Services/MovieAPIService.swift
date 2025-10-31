@@ -13,7 +13,6 @@ protocol MovieAPIServiceProtocol {
 }
 
 final class MovieAPIService: MovieAPIServiceProtocol {
-
     private let baseURL = "https://my-json-server.typicode.com/horizon-code-academy/fake-movies-api/movies"
 
     func fetchMovies() -> Observable<[Movie]> {

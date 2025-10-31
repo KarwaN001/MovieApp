@@ -10,7 +10,6 @@ import Foundation
 
 /// Mock implementation of FavoritesRepository for testing ViewModels
 final class MockFavoritesRepository: FavoritesRepositoryProtocol {
-    
     // MARK: - Properties
     private var favoriteMovies: [Movie] = []
     var toggleFavoriteCallCount = 0
@@ -50,4 +49,3 @@ final class MockFavoritesRepository: FavoritesRepositoryProtocol {
         favoriteMovies = movies
     }
 }
-

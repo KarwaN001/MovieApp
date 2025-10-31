@@ -10,7 +10,6 @@ import RxSwift
 import RxCocoa
 
 final class ThemeToggleButton: UIButton {
-    
     private let themeManager: ThemeManagerProtocol
     private let disposeBag = DisposeBag()
     
@@ -58,4 +57,3 @@ final class ThemeToggleButton: UIButton {
         tintColor = .label
     }
 }
-

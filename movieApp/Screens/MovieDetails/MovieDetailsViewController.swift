@@ -11,7 +11,6 @@ import RxCocoa
 import SafariServices
 
 final class MovieDetailsViewController: UIViewController {
-    
     private let detailsView = MovieDetailsView()
     private let viewModel: MovieDetailsViewModel
     private let disposeBag = DisposeBag()
