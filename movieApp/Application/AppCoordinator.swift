@@ -18,7 +18,6 @@ final class AppCoordinator: Coordinator {
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
-
     func start() {
             let tabBarController = UITabBarController()
 

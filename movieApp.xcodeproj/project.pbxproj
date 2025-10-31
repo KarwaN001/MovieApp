@@ -252,6 +252,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				5F81E0332EB4314E00B47AFF /* PBXTargetDependency */,
 				5F08B5082EAEA77900CA17C6 /* PBXTargetDependency */,
 				5F08B5062EAEA75000CA17C6 /* PBXTargetDependency */,
 			);
@@ -326,6 +327,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				5FE1232A2EAD505300178935 /* XCRemoteSwiftPackageReference "RxSwift" */,
+				5F81E0312EB4313800B47AFF /* XCRemoteSwiftPackageReference "SwiftLint" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 5FAD7C6E2EAC0E67009EC449 /* Products */;
@@ -380,6 +382,10 @@
 		5F08B5082EAEA77900CA17C6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			productRef = 5F08B5072EAEA77900CA17C6 /* RxCocoa */;
+		};
+		5F81E0332EB4314E00B47AFF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 5F81E0322EB4314E00B47AFF /* SwiftLintBuildToolPlugin */;
 		};
 		5FAD7C852EAC0E69009EC449 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -657,6 +663,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		5F81E0312EB4313800B47AFF /* XCRemoteSwiftPackageReference "SwiftLint" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/SwiftLint";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.62.2;
+			};
+		};
 		5FE1232A2EAD505300178935 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
@@ -692,6 +706,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 5FE1232A2EAD505300178935 /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxTest;
+		};
+		5F81E0322EB4314E00B47AFF /* SwiftLintBuildToolPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5F81E0312EB4313800B47AFF /* XCRemoteSwiftPackageReference "SwiftLint" */;
+			productName = "plugin:SwiftLintBuildToolPlugin";
 		};
 		5FB0E5A32EAEE2EB00B9F6DA /* RxRelay */ = {
 			isa = XCSwiftPackageProductDependency;
