@@ -70,7 +70,6 @@
 				Services/DataSources/MovieAPIClient.swift,
 				Services/DataSources/UserDefaultsDataSource.swift,
 				Services/FavoritesRepository.swift,
-				Services/MovieAPIService.swift,
 				Services/Repositories/MovieRepository.swift,
 			);
 			target = 5FAD7C822EAC0E69009EC449 /* movieAppTests */;
