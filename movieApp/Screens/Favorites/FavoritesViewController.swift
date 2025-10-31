@@ -41,7 +41,7 @@ final class FavoritesViewController: UIViewController {
     private func bindViewModel() {
         // Bind ViewModel outputs to View
         favoritesView.bind(
-            movies: viewModel.favoriteMovies.asDriver(),
+            movies: viewModel.output.favoriteMovies,
             disposeBag: disposeBag
         )
         
@@ -56,6 +56,6 @@ final class FavoritesViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel.loadFavorites()
+        viewModel.input.viewWillAppear()
     }
 }

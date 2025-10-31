@@ -31,24 +31,22 @@ final class MovieDetailsViewController: UIViewController {
         super.viewDidLoad()
         navigationController?.setNavigationBarHidden(true, animated: false)
         bindViewModel()
-        print("✅ MovieDetailsViewController loaded for:", viewModel.title)
     }
 
     private func bindViewModel() {
         // Bind ViewModel outputs to View
         Driver.combineLatest(
-            viewModel.title,
-            viewModel.year,
-            viewModel.runtime,
-            viewModel.poster
+            viewModel.output.title,
+            viewModel.output.year,
+            viewModel.output.runtime,
+            viewModel.output.poster
         )
         .drive(onNext: { [weak self] title, year, runtime, poster in
             self?.detailsView.configure(title: title, year: year, runtime: runtime, posterURL: poster)
         })
         .disposed(by: disposeBag)
         
-        viewModel.isFavorite
-            .asDriver()
+        viewModel.output.isFavorite
             .drive(onNext: { [weak self] isFavorite in
                 self?.detailsView.updateFavoriteButton(isFavorite: isFavorite)
             })
@@ -63,13 +61,13 @@ final class MovieDetailsViewController: UIViewController {
         
         detailsView.favoriteButtonTapped
             .subscribe(onNext: { [weak self] in
-                self?.viewModel.toggleFavorite()
+                self?.viewModel.input.toggleFavorite()
             })
             .disposed(by: disposeBag)
         
         detailsView.trailerButtonTapped
             .subscribe(onNext: { [weak self] in
-                guard let url = self?.viewModel.trailerURL() else { return }
+                guard let url = self?.viewModel.input.trailerButtonTapped() else { return }
                 let safari = SFSafariViewController(url: url)
                 self?.present(safari, animated: true)
             })

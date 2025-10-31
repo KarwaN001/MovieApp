@@ -37,14 +37,14 @@ final class MovieListViewController: UIViewController {
         super.viewDidLoad()
         navigationController?.setNavigationBarHidden(true, animated: false)
         bindViewModel()
-        viewModel.fetchMovies()
+        viewModel.input.viewDidLoad()
     }
 
     private func bindViewModel() {
         // Bind ViewModel outputs to View
         movieListView.bind(
-            movies: viewModel.movies,
-            isLoading: viewModel.isLoading,
+            movies: viewModel.output.movies,
+            isLoading: viewModel.output.isLoading,
             disposeBag: disposeBag
         )
         

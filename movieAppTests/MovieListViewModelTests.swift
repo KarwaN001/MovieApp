@@ -25,7 +25,7 @@ final class MovieListViewModelTests: XCTestCase {
         let expectation = expectation(description: "Movies loaded")
 
         // When
-        viewModel.movies
+        viewModel.output.movies
             .drive(onNext: { movies in
                 if !movies.isEmpty {
                     XCTAssertEqual(movies.first?.title, "Mock Movie")
@@ -34,7 +34,7 @@ final class MovieListViewModelTests: XCTestCase {
             })
             .disposed(by: disposeBag)
 
-        viewModel.fetchMovies()
+        viewModel.input.viewDidLoad()
         wait(for: [expectation], timeout: 1)
     }
 }

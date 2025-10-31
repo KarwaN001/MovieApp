@@ -9,14 +9,32 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-final class MovieListViewModel {
+// MARK: - Input Protocol
+protocol MovieListViewModelInput {
+    func viewDidLoad()
+}
 
-    // MARK: - Outputs (for the View)
-    let movies: Driver<[Movie]>
-    let isLoading: Driver<Bool>
-    let errorMessage: Driver<String?>
+// MARK: - Output Protocol
+protocol MovieListViewModelOutput {
+    var movies: Driver<[Movie]> { get }
+    var isLoading: Driver<Bool> { get }
+    var errorMessage: Driver<String?> { get }
+}
 
-    // MARK: - Private Relays
+// MARK: - ViewModel Type Protocol
+protocol MovieListViewModelType {
+    var input: MovieListViewModelInput { get }
+    var output: MovieListViewModelOutput { get }
+}
+
+// MARK: - ViewModel Implementation
+final class MovieListViewModel: MovieListViewModelType {
+
+    // MARK: - Public Interface
+    let input: MovieListViewModelInput
+    let output: MovieListViewModelOutput
+
+    // MARK: - Private Properties
     private let moviesRelay = BehaviorRelay<[Movie]>(value: [])
     private let loadingRelay = BehaviorRelay<Bool>(value: false)
     private let errorRelay = BehaviorRelay<String?>(value: nil)
@@ -28,14 +46,22 @@ final class MovieListViewModel {
     init(apiService: MovieAPIServiceProtocol = MovieAPIService()) {
         self.apiService = apiService
 
-        // Public outputs
-        self.movies = moviesRelay.asDriver()
-        self.isLoading = loadingRelay.asDriver()
-        self.errorMessage = errorRelay.asDriver()
+        // Initialize input and output
+        self.input = Input(
+            fetchMoviesAction: { [weak self] in
+                self?.fetchMovies()
+            }
+        )
+
+        self.output = Output(
+            movies: moviesRelay.asDriver(),
+            isLoading: loadingRelay.asDriver(),
+            errorMessage: errorRelay.asDriver()
+        )
     }
 
-    // MARK: - Methods
-    func fetchMovies() {
+    // MARK: - Private Methods
+    private func fetchMovies() {
         loadingRelay.accept(true)
         errorRelay.accept(nil)
 
@@ -54,5 +80,25 @@ final class MovieListViewModel {
                 }
             )
             .disposed(by: disposeBag)
+    }
+}
+
+// MARK: - Input Implementation
+private extension MovieListViewModel {
+    struct Input: MovieListViewModelInput {
+        let fetchMoviesAction: () -> Void
+
+        func viewDidLoad() {
+            fetchMoviesAction()
+        }
+    }
+}
+
+// MARK: - Output Implementation
+private extension MovieListViewModel {
+    struct Output: MovieListViewModelOutput {
+        let movies: Driver<[Movie]>
+        let isLoading: Driver<Bool>
+        let errorMessage: Driver<String?>
     }
 }

@@ -21,14 +21,30 @@ final class MovieDetailsViewModelTests: XCTestCase {
 
     func test_toggleFavorite_updatesState() {
         let viewModel = MovieDetailsViewModel(movie: movie, favoritesRepo: repo)
-        XCTAssertFalse(viewModel.isFavorite.value)
-        viewModel.toggleFavorite()
-        XCTAssertTrue(viewModel.isFavorite.value)
+        
+        let expectation = expectation(description: "Favorite state updated")
+        var isFavorite = false
+        
+        _ = viewModel.output.isFavorite
+            .drive(onNext: { value in
+                isFavorite = value
+            })
+        
+        XCTAssertFalse(isFavorite)
+        viewModel.input.toggleFavorite()
+        
+        // Give time for the driver to emit
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            XCTAssertTrue(isFavorite)
+            expectation.fulfill()
+        }
+        
+        wait(for: [expectation], timeout: 1)
     }
 
     func test_trailerURL_containsMovieTitle() {
         let viewModel = MovieDetailsViewModel(movie: movie, favoritesRepo: repo)
-        let url = viewModel.trailerURL()
+        let url = viewModel.input.trailerButtonTapped()
         XCTAssertNotNil(url)
         XCTAssertTrue(url!.absoluteString.contains("Doctor%20Strange"))
     }
